@@ -1,0 +1,61 @@
+{
+  "name": "driverapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "clean": "cd android && ./gradlew clean",
+    "bundle": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res",
+    "release": "cd android && npm run clean && ./gradlew assembleRelease",
+    "debug": "cd android && npm run clean && ./gradlew assembleDebug",
+    "pd": "cd android/app/build/outputs/apk/debug && python -m SimpleHTTPServer 8000",
+    "pr": "cd android/app/build/outputs/apk/release && python -m SimpleHTTPServer",
+    "kill": "sudo lsof -t -i tcp:8000 | xargs kill -9"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/datetimepicker": "^3.5.2",
+    "@react-native-community/geolocation": "^2.0.2",
+    "@react-navigation/native": "^6.0.2",
+    "@react-navigation/stack": "^6.0.7",
+    "axios": "^0.21.1",
+    "moment": "^2.29.1",
+    "react": "17.0.2",
+    "react-native": "0.65.0",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-i18n": "^2.0.15",
+    "react-native-keyboard-aware-scroll-view": "^0.9.4",
+    "react-native-maps": "^0.28.0",
+    "react-native-modal-datetime-picker": "^11.0.0",
+    "react-native-responsive-dimensions": "^3.1.1",
+    "react-native-safe-area-context": "^3.3.0",
+    "react-native-screens": "^3.5.0",
+    "react-native-simple-toast": "^1.1.3",
+    "react-native-svg": "^12.1.1",
+    "react-native-vector-icons": "^8.1.0",
+    "react-navigation": "^4.4.4",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.1",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/runtime": "^7.15.3",
+    "@react-native-community/eslint-config": "^3.0.0",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-codegen": "^0.0.7",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
