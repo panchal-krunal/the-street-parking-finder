@@ -17,6 +17,10 @@ import {
   Splash,
   VehicleInfo,
   VerifyOTP,
+  Subscription,
+  Payment,
+  Plan,
+  Thankyou,
 } from '../screens';
 
 const Stack = createStackNavigator();
@@ -46,6 +50,10 @@ const Navigation = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Pullout" component={Pullout} />
         <Stack.Screen name="Map" component={Map} />
+        <Stack.Screen name="Subscription" component={Subscription} />
+        <Stack.Screen name="Payment" component={Payment} />
+        <Stack.Screen name="Plan" component={Plan} />
+        <Stack.Screen name="Thankyou" component={Thankyou} />
       </Stack.Navigator>
     </NavigationContainer>
   );

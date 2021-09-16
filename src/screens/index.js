@@ -8,6 +8,11 @@ import Signup from './Signup';
 import Splash from './Splash';
 import VehicleInfo from './VehicleInfo';
 import VerifyOTP from './VerifyOTP';
+import Subscription from './Membership/Subscription';
+import Payment from './Membership/Payment';
+import Plan from './Membership/Plan';
+import Thankyou from './Membership/Thankyou';
+
 export {
   Splash,
   Signup,
@@ -19,4 +24,8 @@ export {
   Home,
   Pullout,
   Map,
+  Subscription,
+  Payment,
+  Plan,
+  Thankyou,
 };

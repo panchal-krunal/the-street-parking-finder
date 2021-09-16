@@ -2,17 +2,18 @@ import React from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import colors from '../helpers/colors';
 import images from '../helpers/images';
-const NavHeader = ({}) => {
+const NavHeader = ({navigation}) => {
+  console.log(navigation);
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.push('Pullout')}>
         <Image
           source={images.headerIcon1}
           style={{width: 60, height: 60, marginTop: 10}}
           resizeMode="contain"
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.push('Subscription')}>
         <Image
           source={images.headerIcon2}
           style={{width: 50, height: 50, marginTop: 10}}

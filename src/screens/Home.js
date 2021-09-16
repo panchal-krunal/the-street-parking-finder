@@ -105,7 +105,7 @@ const Home = props => {
     );
   };
   const renderHeader = () => {
-    return <NavHeader />;
+    return <NavHeader navigation={navigation} />;
   };
   const renderContent = () => {
     return (

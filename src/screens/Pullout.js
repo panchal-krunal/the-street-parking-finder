@@ -188,7 +188,9 @@ const mapStyle = [
   },
 ];
 
-const Pullout = () => {
+const Pullout = props => {
+  const {navigation} = props;
+
   const [region, setRegion] = useState(null);
 
   const [showSideView, setShowSideView] = useState(false);
@@ -236,7 +238,7 @@ const Pullout = () => {
   const renderMapView = () => {
     return (
       <MapView
-        provider={Platform.OS === 'android' && PROVIDER_GOOGLE}
+        provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : ''}
         customMapStyle={mapStyle}
         liteMode={true}
         onPress={e => console.log(e.nativeEvent.coordinate)}
@@ -366,7 +368,7 @@ const Pullout = () => {
   return (
     <SafeAreaView forceInset={{bottom: 'never'}} style={styles.safeArea}>
       <View style={styles.container}>
-        <NavHeader />
+        <NavHeader navigation={navigation} />
         {!region && renderEmptyView()}
         {region && renderMapView()}
         <View style={styles.footer}>

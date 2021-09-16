@@ -6,4 +6,6 @@ export default Colors = {
   lightGrey: '#F9F6F6',
   yellow: '#FFCC33',
   green: '#25A01A',
+  lightYellow: '#E7D140',
+  brown: '#896A01',
 };

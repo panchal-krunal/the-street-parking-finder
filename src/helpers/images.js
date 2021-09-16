@@ -14,4 +14,8 @@ export default Images = {
   headerIcon3: require('../assets/images/nav-icon/3.png'),
   headerIcon4: require('../assets/images/nav-icon/4.png'),
   welcomeUser: require('../assets/images/img_welcome_user.png'),
+  creditCard: require('../assets/images/img_credit_card.png'),
+  debitCard: require('../assets/images/img_debit_card.png'),
+  paypal: require('../assets/images/img_paypal.png'),
+  protection: require('../assets/images/img_protection.png'),
 };

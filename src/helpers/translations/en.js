@@ -33,4 +33,18 @@ export default {
     "YOUR VEHICLE MUST BE PARKED ON A STREET PARKING SPOT TO COMPLETE DOWNLOADING AND REGISTERING LOCATION OTHERWISE APP WON'T PERFORM PROPERLY.",
   text_confirmation:
     'I agree & confirm being parked on a street parking spot right now.',
+  premium_service_subscription: 'Premium Service Subscription',
+  month: 'Month',
+  subscription_content_title: 'Recurring billing, cancel anytime.',
+  subscription_content:
+    'By tapping Continue, your subscription will automatically renew for the same package length at the same price until you cancel in the app settings. Buy tappping continue you agree to our terms.',
+  plan_text:
+    'Your subscription will auto-renew for the same time length until you cancel at any time, in account settings.',
+  next: 'NEXT',
+  review_plan: 'Review Plan',
+  payment: 'Payment',
+  thankyou: 'Thank You',
+  payment_successful: 'Payment Successful',
+  payment_successful_content: 'Your payment was applied successfully ',
+  back_to_home: 'Back to Home',
 };
