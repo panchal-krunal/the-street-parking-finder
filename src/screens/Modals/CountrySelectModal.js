@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 10,
     borderRadius: 10,
-    marginTop: 10,
+    marginTop: 20,
     height: '95%',
     shadowColor: '#000',
     shadowOffset: {
@@ -94,9 +94,10 @@ const CountrySelectModal = ({
   title,
   onItemSelect,
   type,
+  search,
+  setSearch,
 }) => {
   const [list, setList] = useState(items);
-  const [search, setSearch] = useState('');
 
   useEffect(() => {
     setList(items);

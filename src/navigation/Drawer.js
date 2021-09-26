@@ -79,7 +79,7 @@ const Drawer = props => {
     },
     {id: 3, name: 'Subscription', icon: 'dollar', navigate: 'Subscription'},
     {id: 4, name: 'Notification', icon: 'bell'},
-    {id: 5, name: 'My Plans', icon: 'list'},
+    {id: 5, name: 'My Plans', icon: 'list', navigate: 'MyPlans'},
     {id: 6, name: 'Select Country', icon: 'globe'},
     {id: 4, name: 'Select Language', icon: 'flag'},
     {id: 4, name: 'Share', icon: 'share'},

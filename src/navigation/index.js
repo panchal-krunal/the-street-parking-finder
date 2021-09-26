@@ -30,6 +30,7 @@ import {
   Terms,
   EditProfile,
   EditVehicleInfo,
+  MyPlans,
 } from '../screens';
 
 import SideDrawer from './Drawer';
@@ -55,6 +56,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="Terms" component={Terms} />
       <Drawer.Screen name="EditProfile" component={EditProfile} />
       <Drawer.Screen name="EditVehicleInfo" component={EditVehicleInfo} />
+      <Drawer.Screen name="MyPlans" component={MyPlans} />
     </Drawer.Navigator>
   );
 };

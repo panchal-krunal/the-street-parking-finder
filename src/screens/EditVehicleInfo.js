@@ -147,6 +147,7 @@ const EditVehicleInfo = props => {
   const [selectedModel, setSelectedModel] = useState('');
 
   const [licensePlate, setLicensePlate] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     designMakeModel();
@@ -368,8 +369,11 @@ const EditVehicleInfo = props => {
         type={showModal}
         closeModal={() => {
           setShowModal('');
+          setSearch('');
         }}
         onItemSelect={onDropdownValueSelect}
+        search={search}
+        setSearch={setSearch}
       />
     </SafeAreaView>
   );

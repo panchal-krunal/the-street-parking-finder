@@ -18,6 +18,7 @@ import Disclaimer from './Disclaimer';
 import Terms from './Terms';
 import EditProfile from './EditProfile';
 import EditVehicleInfo from './EditVehicleInfo';
+import MyPlans from './MyPlans';
 export {
   Splash,
   Signup,
@@ -39,4 +40,5 @@ export {
   Terms,
   EditProfile,
   EditVehicleInfo,
+  MyPlans,
 };

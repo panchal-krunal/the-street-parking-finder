@@ -38,6 +38,7 @@ const Signup = props => {
   const [showModal, setShowModal] = useState(false);
   const [showCountryModal, setShowCountryModal] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('US +1');
+  const [search, setSearch] = useState('');
 
   const styles = StyleSheet.create({
     container: {
@@ -272,6 +273,8 @@ const Signup = props => {
         closeModal={() => setShowCountryModal(!showCountryModal)}
         onItemSelect={onItemSelect}
         type="SIGNUP"
+        search={search}
+        setSearch={setSearch}
       />
     </SafeAreaView>
   );

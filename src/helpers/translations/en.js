@@ -72,4 +72,5 @@ export default {
   edit_profile: 'Edit Profile',
   edit_vehicle_information: 'Edit Vehicle Information',
   save_changes: 'SAVE CHANGES',
+  my_plans: 'My Plans',
 };

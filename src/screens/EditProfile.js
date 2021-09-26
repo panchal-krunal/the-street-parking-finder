@@ -146,6 +146,7 @@ const EditProfile = props => {
 
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     fetchCountries();
@@ -362,8 +363,11 @@ const EditProfile = props => {
         closeModal={() => {
           setShowCountryModal(false);
           setShowStateModal(false);
+          setSearch('');
         }}
         onItemSelect={onDropdownValueSelect}
+        search={search}
+        setSearch={setSearch}
       />
     </SafeAreaView>
   );

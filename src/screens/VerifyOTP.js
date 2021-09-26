@@ -167,7 +167,7 @@ const VerifyOTP = props => {
             maxLength={1}
             selectionColor={colors.red}
             returnKeyType="next"
-            keyboardType="default"
+            keyboardType="number-pad"
             ref={otpRef1}
             value={otp1}
             onChangeText={v => {
@@ -181,7 +181,7 @@ const VerifyOTP = props => {
             maxLength={1}
             selectionColor={colors.red}
             returnKeyType="next"
-            keyboardType="default"
+            keyboardType="number-pad"
             ref={otpRef2}
             onSubmitEditing={() => otpRef3?.current?.focus()}
             value={otp2}
@@ -195,7 +195,7 @@ const VerifyOTP = props => {
             maxLength={1}
             selectionColor={colors.red}
             returnKeyType="next"
-            keyboardType="default"
+            keyboardType="number-pad"
             ref={otpRef3}
             onSubmitEditing={() => otpRef4?.current?.focus()}
             value={otp3}
@@ -208,7 +208,7 @@ const VerifyOTP = props => {
             style={styles.otpInput}
             maxLength={1}
             selectionColor={colors.red}
-            keyboardType="default"
+            keyboardType="number-pad"
             ref={otpRef4}
             returnKeyType="done"
             onSubmitEditing={() => onVerifyButtonPress()}
