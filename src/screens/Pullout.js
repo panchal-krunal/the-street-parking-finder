@@ -8,8 +8,14 @@ import {
   Dimensions,
   Image,
   Switch,
+  Alert,
+  Platform,
 } from 'react-native';
-import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {
+  Marker,
+  PROVIDER_DEFAULT,
+  PROVIDER_GOOGLE,
+} from 'react-native-maps';
 import {
   responsiveFontSize,
   responsiveHeight,
@@ -22,6 +28,10 @@ import fonts from '../helpers/fonts';
 import images from '../helpers/images';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
+import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {debounce} from 'lodash';
+import {log} from '../helpers/tron';
+import {DrawerActions} from '@react-navigation/routers';
 
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 console.log(DEVICE_HEIGHT);
@@ -189,11 +199,12 @@ const mapStyle = [
 ];
 
 const Pullout = props => {
+  log(props);
   const {navigation} = props;
 
   const [region, setRegion] = useState(null);
 
-  const [showSideView, setShowSideView] = useState(false);
+  const [showSideView, setShowSideView] = useState(true);
 
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
 
@@ -203,17 +214,53 @@ const Pullout = props => {
 
   const [reminderDateTime, setReminderDateTime] = useState(null);
 
-  const onRegionChange = () => {
+  const onRegionChange = region => {
+    console.log('change', region);
     setRegion(region);
   };
 
   useEffect(() => {
-    fetchLocation();
+    requestLocationPermission();
   }, []);
+
+  const requestLocationPermission = async () => {
+    try {
+      let granted;
+      if (Platform.OS === 'android') {
+        granted = await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION, {
+          title: 'Location Access Required',
+          message:
+            'The Street Parking Finder requires access to your location to find parking spot',
+        });
+      } else {
+        granted = await check(PERMISSIONS.IOS.LOCATION_ALWAYS, {
+          title: 'Location Access Required',
+          message:
+            'The Street Parking Finder requires access to your location to find parking spot',
+        });
+      }
+      console.log(granted);
+
+      if (granted === RESULTS.GRANTED) {
+        //To Check, If Permission is granted
+        fetchLocation();
+      } else {
+        Alert.alert('Error', 'Error while fetching location permission', [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]);
+      }
+    } catch (err) {
+      console.log('err', err);
+      Alert.alert('Error', 'Error while fetching location permission', [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
+    }
+  };
 
   const fetchLocation = () => {
     Geolocation.getCurrentPosition(
       position => {
+        console.log(position);
         setRegion({
           latitude: position.coords.latitude,
           longitude: position?.coords?.longitude,
@@ -222,7 +269,9 @@ const Pullout = props => {
         });
       },
       error => console.log(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      Platform.OS === 'android'
+        ? {enableHighAccuracy: true, timeout: 20000, maximumAge: 3600000}
+        : {enableHighAccuracy: true, timeout: 20000, maximumAge: 3600000},
     );
   };
 
@@ -240,9 +289,8 @@ const Pullout = props => {
       <MapView
         provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : ''}
         customMapStyle={mapStyle}
-        liteMode={true}
         onPress={e => console.log(e.nativeEvent.coordinate)}
-        region={region}
+        initialRegion={region}
         onRegionChange={onRegionChange}
         zoomControlEnabled={true}
         zoomEnabled={true}
@@ -252,8 +300,8 @@ const Pullout = props => {
         <Marker
           image={images.headerIcon1}
           coordinate={{
-            latitude: region.latitude,
-            longitude: region.longitude,
+            latitude: region?.latitude,
+            longitude: region?.longitude,
           }}
           pinColor={'red'}
         />
@@ -275,12 +323,21 @@ const Pullout = props => {
             styles.rightView,
             pulloutDateTime && {alignItems: 'flex-start', paddingLeft: 20},
           ]}>
+          <TouchableOpacity
+            style={styles.showHideButton}
+            onPress={() => setShowSideView(false)}>
+            <Icon
+              name={showSideView ? 'angle-right' : 'angle-left'}
+              color={colors.white}
+              size={responsiveFontSize(3)}
+            />
+          </TouchableOpacity>
           {!pulloutDateTime && (
             <>
               <Text style={[styles.titleText, {color: colors.yellow}]}>
                 SET / RESET
               </Text>
-              <Text style={styles.titleText}>DATE TIME</Text>
+              <Text style={styles.titleText}>DATE / TIME</Text>
               <Text style={styles.titleText}>TO</Text>
               <TouchableOpacity
                 style={styles.pullOutButton}
@@ -301,7 +358,7 @@ const Pullout = props => {
                   styles.titleText,
                   {color: colors.yellow, textAlign: 'center', width: '80%'},
                 ]}>
-                SCHEDULED PULLOUT
+                SCHEDULED PULL OUT
               </Text>
               <Text style={styles.titleText}>DATE</Text>
               <Text style={[styles.valueText, {marginTop: 0}]}>
@@ -342,6 +399,7 @@ const Pullout = props => {
       </View>
     );
   };
+
   useEffect(() => {
     if (isReminderOn) setIsDatePickerVisible(true);
     if (!isReminderOn) setReminderDateTime(null);
@@ -359,16 +417,30 @@ const Pullout = props => {
       />
     );
   };
+
   const handleConfirm = date => {
     console.log(date);
     setIsDatePickerVisible(false);
     if (!pulloutDateTime) setPulloutDateTime(date);
     else setReminderDateTime(date);
   };
+
   return (
     <SafeAreaView forceInset={{bottom: 'never'}} style={styles.safeArea}>
       <View style={styles.container}>
+        {!showSideView && (
+          <TouchableOpacity
+            style={styles.showHideButtonScreen}
+            onPress={() => setShowSideView(true)}>
+            <Icon
+              name={showSideView ? 'angle-right' : 'angle-left'}
+              color={colors.white}
+              size={responsiveFontSize(3)}
+            />
+          </TouchableOpacity>
+        )}
         <NavHeader navigation={navigation} />
+        {/* {renderMapView()} */}
         {!region && renderEmptyView()}
         {region && renderMapView()}
         <View style={styles.footer}>
@@ -379,7 +451,10 @@ const Pullout = props => {
               size={responsiveFontSize(3)}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setShowSideView(!showSideView)}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.dispatch(DrawerActions.toggleDrawer());
+            }}>
             <Icon
               name="bars"
               color={colors.white}
@@ -484,5 +559,26 @@ const styles = StyleSheet.create({
   toggleButton: {
     flex: 0.2,
     width: '100%',
+  },
+  showHideButton: {
+    position: 'absolute',
+    top: '40%',
+    backgroundColor: colors.black,
+    height: 70,
+    width: 40,
+    left: -20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  showHideButtonScreen: {
+    position: 'absolute',
+    top: '50%',
+    backgroundColor: colors.black,
+    height: 70,
+    width: 40,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 20,
   },
 });

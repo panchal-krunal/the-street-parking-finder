@@ -12,7 +12,12 @@ import Subscription from './Membership/Subscription';
 import Payment from './Membership/Payment';
 import Plan from './Membership/Plan';
 import Thankyou from './Membership/Thankyou';
-
+import Share from './Share';
+import Support from './Support';
+import Disclaimer from './Disclaimer';
+import Terms from './Terms';
+import EditProfile from './EditProfile';
+import EditVehicleInfo from './EditVehicleInfo';
 export {
   Splash,
   Signup,
@@ -28,4 +33,10 @@ export {
   Payment,
   Plan,
   Thankyou,
+  Share,
+  Support,
+  Disclaimer,
+  Terms,
+  EditProfile,
+  EditVehicleInfo,
 };

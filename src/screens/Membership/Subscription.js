@@ -200,6 +200,7 @@ const Subscription = props => {
   const renderSubscriptionItem = number => {
     return (
       <TouchableOpacity
+        activeOpacity={1}
         style={{flex: 0.45}}
         onPress={() => setSelectedMonth(number)}>
         <View

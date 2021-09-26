@@ -5,6 +5,9 @@ import {
   HeaderStyleInterpolators,
   TransitionSpecs,
 } from '@react-navigation/stack';
+
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
 import React from 'react';
 import {
   Action,
@@ -21,9 +24,40 @@ import {
   Payment,
   Plan,
   Thankyou,
+  Share,
+  Support,
+  Disclaimer,
+  Terms,
+  EditProfile,
+  EditVehicleInfo,
 } from '../screens';
 
+import SideDrawer from './Drawer';
+
 const Stack = createStackNavigator();
+
+const Drawer = createDrawerNavigator();
+
+const DrawerComponent = () => {
+  return (
+    <Drawer.Navigator
+      initialRouteName={'Pullout'}
+      drawerPosition="left"
+      drawerType="front"
+      screenOptions={{
+        headerShown: false,
+      }}
+      drawerContent={props => <SideDrawer {...props} />}>
+      <Drawer.Screen name="Pullout" component={Pullout} />
+      <Drawer.Screen name="Share" component={Share} />
+      <Drawer.Screen name="Support" component={Support} />
+      <Drawer.Screen name="Disclaimer" component={Disclaimer} />
+      <Drawer.Screen name="Terms" component={Terms} />
+      <Drawer.Screen name="EditProfile" component={EditProfile} />
+      <Drawer.Screen name="EditVehicleInfo" component={EditVehicleInfo} />
+    </Drawer.Navigator>
+  );
+};
 
 const Navigation = () => {
   return (
@@ -48,12 +82,13 @@ const Navigation = () => {
         <Stack.Screen name="VehicleInfo" component={VehicleInfo} />
         <Stack.Screen name="Action" component={Action} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Pullout" component={Pullout} />
+
         <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="Subscription" component={Subscription} />
         <Stack.Screen name="Payment" component={Payment} />
         <Stack.Screen name="Plan" component={Plan} />
         <Stack.Screen name="Thankyou" component={Thankyou} />
+        <Stack.Screen name="Drawer" component={DrawerComponent} />
       </Stack.Navigator>
     </NavigationContainer>
   );

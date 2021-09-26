@@ -135,7 +135,7 @@ const Home = props => {
         <Text style={styles.confirmationText}>{I.t('text_confirmation')}</Text>
         <Button
           buttonText="CONFIRM"
-          onPress={() => navigation.push('Pullout')}
+          onPress={() => navigation.push('Drawer')}
         />
       </View>
     );

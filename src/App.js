@@ -7,10 +7,15 @@ import {PersistGate} from 'redux-persist/integration/react';
 import Colors from './helpers/colors';
 import Navigation from './navigation';
 import configureStore from './redux/store';
+
 const {store, persistor} = configureStore();
 
 LogBox.ignoreAllLogs();
 GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
+// GLOBAL.FormData = GLOBAL.originalFormData || GLOBAL.FormData
+if (__DEV__) {
+  import('./helpers/tron').then(() => console.log('Reactotron Configured'));
+}
 
 const App = () => {
   return (

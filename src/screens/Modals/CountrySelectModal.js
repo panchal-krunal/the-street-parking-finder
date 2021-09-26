@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 10,
     borderRadius: 10,
-    marginTop: 40,
-    height: '90%',
+    marginTop: 10,
+    height: '95%',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: responsiveFontSize(2),
     fontFamily: fonts.Regular,
-    height: 40,
+    height: 45,
     color: colors.black,
     width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontFamily: fonts.Bold,

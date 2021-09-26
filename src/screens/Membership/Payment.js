@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   typeButton: {
     borderBottomWidth: 0.3,
     borderBottomColor: colors.darkGrey,
-    height: 150,
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   typeText: {
-    fontSize: responsiveFontSize(3),
+    fontSize: responsiveFontSize(2.5),
     fontFamily: fonts.Regular,
     color: colors.black,
     marginLeft: 20,
@@ -145,6 +145,16 @@ const Payment = props => {
         {renderPaymentTypes(images.creditCard, 'Credit Card')}
         {renderPaymentTypes(images.debitCard, 'Debit Card')}
         {renderPaymentTypes(images.paypal, 'Pay Pal')}
+        <Image
+          source={images.protection}
+          resizeMode="contain"
+          style={{
+            width: '100%',
+            height: 100,
+            alignSelf: 'center',
+            marginTop: 20,
+          }}
+        />
         {renderNextButton()}
       </View>
     );
@@ -177,7 +187,7 @@ const Payment = props => {
     return (
       <Button
         buttonStyle={styles.button}
-        buttonText="NEXT"
+        buttonText="SUBMIT"
         onPress={() => navigation.push('Thankyou')}
       />
     );

@@ -18,4 +18,8 @@ export default Images = {
   debitCard: require('../assets/images/img_debit_card.png'),
   paypal: require('../assets/images/img_paypal.png'),
   protection: require('../assets/images/img_protection.png'),
+  facebook: require('../assets/images/social-icons/facebook.png'),
+  instagram: require('../assets/images/social-icons/instagram.png'),
+  linkedin: require('../assets/images/social-icons/linkedin.png'),
+  twitter: require('../assets/images/social-icons/twitter.png'),
 };

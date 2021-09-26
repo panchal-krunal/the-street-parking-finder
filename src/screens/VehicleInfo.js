@@ -99,29 +99,31 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   label: {
-    fontFamily: fonts.Regular,
+    fontFamily: fonts.SemiBold,
     fontSize: responsiveFontSize(2),
-    color: '#a7a7a7',
+    color: '#333',
   },
   input: {
     width: '100%',
     alignSelf: 'center',
     padding: 10,
     paddingLeft: 0,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.black,
     height: 50,
     fontFamily: fonts.Regular,
     color: colors.black,
     fontSize: responsiveFontSize(2),
+    backgroundColor: colors.lightGrey,
   },
   dropdownContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.black,
+    backgroundColor: colors.lightGrey,
+    borderRadius: 5,
+    marginTop: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 });
 
@@ -193,9 +195,36 @@ const VehicleInfo = props => {
           {renderMakeDropdown()}
           {renderModelDropdown()}
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>{I.t('label_license_plate')}</Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={styles.label}>{I.t('label_license_plate')}</Text>
+              <Text
+                style={[
+                  styles.label,
+                  {
+                    fontSize: responsiveFontSize(1.5),
+                    color: Colors.red,
+                    fontFamily: fonts.Regular,
+                  },
+                ]}>
+                {I.t('label_optional')}
+              </Text>
+            </View>
             <TextInput
-              style={styles.input}
+              style={[
+                styles.input,
+                {
+                  marginTop: 20,
+                  height: 60,
+                  padding: 10,
+                  paddingLeft: 10,
+                  borderRadius: 5,
+                },
+              ]}
               value={licensePlate}
               onChangeText={v => setLicensePlate(v)}
             />

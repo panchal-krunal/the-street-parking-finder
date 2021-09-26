@@ -42,7 +42,7 @@ const RadioButton = ({isSelected, text, onPress}) => {
         <View
           style={[
             styles.inner,
-            isSelected && {backgroundColor: colors.red},
+            isSelected && {backgroundColor: colors.red, borderRadius: 20},
           ]}></View>
       </View>
       <Text style={styles.text}>{text}</Text>

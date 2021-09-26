@@ -41,8 +41,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The Street Parking Finder requires access to your location to find parking spot</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>The Street Parking Finder requires access to your location to find parking spot</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>The Street Parking Finder requires access to your location to find parking spot</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Black.ttf</string>
